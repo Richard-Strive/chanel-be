@@ -30,4 +30,23 @@ route.post(
   }
 );
 
+route.post("/login", async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    if (email && password) {
+      const userFound = await User.findByCredentials(email, password);
+
+      if (userFound) {
+        res.status(200).send(userFound);
+        next();
+      } else {
+        res.status(400).send("no user found");
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
 module.exports = route;

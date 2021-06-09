@@ -31,4 +31,19 @@ const UserSchema = new Schema({
   favProd: { type: Array, required: false },
 });
 
+UserSchema.statics.findByCredentials = async function (email, plainPW) {
+  if (email && plainPW) {
+    const user = await this.findOne({ email });
+
+    if (user) {
+      isMatch = (await plainPW) == user.password;
+
+      if (isMatch) return user;
+      else console.log("Passord incorrect");
+    } else {
+      console.log("No user with this credentials");
+    }
+  }
+};
+
 module.exports = model("User", UserSchema);
