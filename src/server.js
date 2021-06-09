@@ -2,12 +2,18 @@ const express = require("express");
 const listEndPoints = require("express-list-endpoints");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const UserRouter = require("./route/user/index");
 
 const server = express();
 
+server.use(express.json());
 server.use(cors());
 
 const port = process.env.PORT;
+
+server.use("/chanel", UserRouter);
+
+console.log(listEndPoints(server));
 
 mongoose
   .connect(process.env.MONGO_CONNECTION, {
