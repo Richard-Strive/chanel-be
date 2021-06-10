@@ -4,6 +4,7 @@ const User = require("./schema");
 const { body, validationResult } = require("express-validator");
 const route = express.Router();
 
+//Registration
 route.post(
   "/register",
   body("email").isEmail().withMessage("this is not a valid email"),
@@ -30,6 +31,7 @@ route.post(
   }
 );
 
+//Login
 route.post("/login", async (req, res, next) => {
   try {
     const { email, password } = req.body;
