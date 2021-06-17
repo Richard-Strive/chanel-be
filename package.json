@@ -27,6 +27,7 @@
   "devDependencies": {
     "dotenv": "^10.0.0",
     "express-list-endpoints": "^5.0.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "typescript": "^4.3.2"
   }
 }
